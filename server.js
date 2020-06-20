@@ -89,82 +89,66 @@ app.use('/apidocs', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
  *        description: Successfull
  * /register:
  *  post:
- *  description: Register
- *  parameters:
- *  - name: name
- *    description: user name
- *    in: formData
- *    required: true
- *    type: string
- *  - name: email
- *    description: email of user
- *    in: formData
- *    required: true
- *    type: string
- *  - name: password
- *    description: password of user
- *    in: formData
- *    required: true
- *    type: string
- *  reponses: 
- *    '200':
- *       description: Successfull
+ *    description: Register
+ *    parameters:
+ *    - name: name
+ *      description: user name
+ *      in: formData
+ *      required: true
+ *      type: string
+ *    - name: email
+ *      description: email of user
+ *      in: formData
+ *      required: true
+ *      type: string
+ *    - name: password
+ *      description: password of user
+ *      in: formData
+ *      required: true
+ *      type: string
+ *    reponses: 
+ *      '200':
+ *        description: Successfull
  * /create:
  *  post:
- *  description: Create new
- *  parameters:
- *  - name: Title
- *    description: Title
- *    in: formData
- *    required: true
- *    type: string
- *  - name: Body
- *    description: Body
- *    in: formData
- *    required: true
- *    type: string
- *  - name: Picture
- *    description: URL of picture 
- *    in: formData
- *    required: true
- *    type: string
- *  reponses: 
- *    '200':
- *       description: Successfull
+ *    description: Create new
+ *    parameters:
+ *    - name: Title
+ *      description: Title
+ *      in: formData
+ *      required: true
+ *      type: string
+ *    - name: Body
+ *      description: Body
+ *      in: formData
+ *      required: true
+ *      type: string
+ *    - name: Picture
+ *      description: URL of picture 
+ *      in: formData
+ *      required: true
+ *      type: string
+ *    reponses: 
+ *      '200':
+ *        description: Successfull
  * /home:
  *  post:
- *  descriptiom: Create new post
- *  parameters:
- *  - name: Comment 
- *    description: Comment of user
- *    in: formData
- *    required: true
- *    type: string
- *  reponses: 
- *     '200':
+ *    description: Create new post
+ *    parameters:
+ *    - name: Comment 
+ *      description: Comment of user
+ *      in: formData
+ *      required: true
+ *      type: string
+ *    reponses: 
+ *      '200':
  *        description: Successfull
  * /profile:
  *  get:
- *  descriptiom: List review of user
- *  parameters:
- *  - name: Name
- *    description: Name of user
- *    in: formData
- *    required: true
- *    type: string
- *  - name: Body
- *    description: Body of Post
- *    in: formData
- *    required: true
- *    type: string
- *  - name: Picture
- *    description: URL of picture 
- *    in: formData
- *    required: true
- *    type: string
- *  reponses: 
- *    '200':
- *       description: Successfull
+ *    description: List review of user
+ *    reponses: 
+ *      '200':
+ *         description: Successfull
  */
 
 
