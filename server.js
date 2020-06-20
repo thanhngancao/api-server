@@ -68,24 +68,30 @@ app.use('/apidocs', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
  *          description: Successfull
  *  delete:
  *    description: Delete the post
- *  update:
+ *    responses: 
+ *       '200':
+ *          description: Successfull
+ *  put:
  *    description: Update the post
+ *    responses: 
+ *       '200':
+ *          description: Successfull
  * /login:
- *  post:
- *   description: Login
- *   parameters:
- *   - name: email
- *     description: user email
- *     in: formData
- *     required: true
- *     type: string
- *   - name: password
- *     description: user password
- *     in: formData
- *     required: true
- *     type: string
- *   reponses: 
- *     '200':
+ *  get:
+ *    description: Login
+ *    parameters:
+ *    - name: email
+ *      description: user email
+ *      in: formData
+ *      required: true
+ *      type: string
+ *    - name: password
+ *      description: user password
+ *      in: formData
+ *      required: true
+ *      type: string
+ *    responses: 
+ *      '200':
  *        description: Successfull
  * /register:
  *  post:
@@ -106,7 +112,7 @@ app.use('/apidocs', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
  *      in: formData
  *      required: true
  *      type: string
- *    reponses: 
+ *    responses: 
  *      '200':
  *        description: Successfull
  * /create:
@@ -128,7 +134,7 @@ app.use('/apidocs', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
  *      in: formData
  *      required: true
  *      type: string
- *    reponses: 
+ *    responses: 
  *      '200':
  *        description: Successfull
  * /home:
@@ -140,13 +146,13 @@ app.use('/apidocs', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
  *      in: formData
  *      required: true
  *      type: string
- *    reponses: 
+ *    responses: 
  *      '200':
  *        description: Successfull
  * /profile:
  *  get:
  *    description: List review of user
- *    reponses: 
+ *    responses: 
  *      '200':
  *         description: Successfull
  */
