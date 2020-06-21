@@ -77,7 +77,7 @@ app.use('/apidocs', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
  *       '200':
  *          description: Successfull
  * /login:
- *  get:
+ *  post:
  *    description: Login
  *    parameters:
  *    - name: email
