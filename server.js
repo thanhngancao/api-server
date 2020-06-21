@@ -110,13 +110,13 @@ app.use('/apidocs', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
  *    responses: 
  *      '200':
  *        description: Successfull
- * /home:
+ * /newsfeed:
  *  get: 
  *    description: To show all post of user
  *    responses: 
  *       '200':
  *          description: Successfull
- * /createreview:
+ * /createnewsfeed:
  *  post:
  *    description: Create new
  *    parameters:
@@ -176,7 +176,7 @@ app.use('/apidocs', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
  *    responses: 
  *      '200':
  *        description: Successfull
- * /userhome:
+ * /mynewsfeed:
  *  get:
  *    description: List review of user
  *    responses: 

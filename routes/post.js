@@ -8,7 +8,7 @@ const Post = mongoose.model("Post")
 //@route POST /createnewsfeed
 //@desc post picture, title, body newsfeed
 //access Private
-router.post('/createreview',(req, res, next) => { //Create new review
+router.post('/createnewsfeed',(req, res, next) => { //Create new review
     const { title, body, pic} = req.body
     
     if(!title || !body || !pic ){
@@ -30,7 +30,7 @@ router.post('/createreview',(req, res, next) => { //Create new review
         })
 })
 
-router.get('/home', (req, res, next) => {
+router.get('/newsfeed', (req, res, next) => {
     Post.find()
         // populate use for get user id and user name post newfeed
         .populate("postedBy","_id name") 
@@ -43,11 +43,11 @@ router.get('/home', (req, res, next) => {
         })
 })
 
-router.get('/userhome',identifyUserLogin, (req, res, next) => {
+router.get('/mynewsfeed',identifyUserLogin, (req, res, next) => {
     Post.find({postedBy:req.user._id})
     .populate("postedBy", "_id name")
-    .then(userhome => {
-        res.json({userhome})
+    .then(mynewsfeed => {
+        res.json({mynewsfeed})
     })
     .catch(err => {
         console.log(err)
