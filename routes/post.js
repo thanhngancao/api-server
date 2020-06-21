@@ -30,7 +30,7 @@ router.post('/createreview',(req, res, next) => { //Create new review
         })
 })
 
-router.get('/newsfeed', (req, res, next) => {
+router.get('/home', (req, res, next) => {
     Post.find()
         // populate use for get user id and user name post newfeed
         .populate("postedBy","_id name") 
@@ -43,11 +43,11 @@ router.get('/newsfeed', (req, res, next) => {
         })
 })
 
-router.get('/homeuser',identifyUserLogin, (req, res, next) => {
+router.get('/userhome',identifyUserLogin, (req, res, next) => {
     Post.find({postedBy:req.user._id})
     .populate("postedBy", "_id name")
-    .then(homeuser => {
-        res.json({homeuser})
+    .then(userhome => {
+        res.json({userhome})
     })
     .catch(err => {
         console.log(err)
