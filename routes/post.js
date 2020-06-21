@@ -8,14 +8,13 @@ const Post = mongoose.model("Post")
 //@route POST /createnewsfeed
 //@desc post picture, title, body newsfeed
 //access Private
-router.post('/createnewsfeed',identifyUserLogin,(req, res, next) => {
+router.post('/createreview',(req, res, next) => { //Create new review
     const { title, body, pic} = req.body
     
     if(!title || !body || !pic ){
-        return res.status(400).json({error: 'Please add into fileds'});
+        return res.status(400).json({error: 'Please add into fields'});
     }
     //make no have password respone
-    req.user.password=undefined
     const post = new Post({
         title,
         body,
@@ -31,7 +30,7 @@ router.post('/createnewsfeed',identifyUserLogin,(req, res, next) => {
         })
 })
 
-router.get('/newsfeed', (req, res, next) => {
+router.get('/reviewinhome', (req, res, next) => {
     Post.find()
         // populate use for get user id and user name post newfeed
         .populate("postedBy","_id name") 
@@ -44,32 +43,18 @@ router.get('/newsfeed', (req, res, next) => {
         })
 })
 
-router.get('/subnewsfeed', (req, res, next) => {
-    // if postedBy in following 
-    Post.find({postedBy:{$in:req.user.following}})
-        // populate use for get user id and user name post newfeed
-        .populate("postedBy","_id name") 
-        .populate("comments.postedBy", "_id name")
-        .then(posts => {
-            res.json({posts})
-        })
-        .catch(err => {
-            console.log(err)
-        })
-})
-
-router.get('/mynewsfeed',identifyUserLogin, (req, res, next) => {
+router.get('/homeuser',identifyUserLogin, (req, res, next) => {
     Post.find({postedBy:req.user._id})
     .populate("postedBy", "_id name")
-    .then(mynewsfeed => {
-        res.json({mynewsfeed})
+    .then(homeuser => {
+        res.json({homeuser})
     })
     .catch(err => {
         console.log(err)
     })
 })
 
-router.put('/comment', identifyUserLogin, (req,res, next)=> {
+router.put('/comment', identifyUserLogin, (req,res, next)=> { // comment 
     const comment = {
         text: req.body.text,
         postedBy: req.user._id
@@ -90,7 +75,8 @@ router.put('/comment', identifyUserLogin, (req,res, next)=> {
     })
 })
 
-router.delete('/deletepost/:postid',identifyUserLogin, (req, res) => {
+router.delete('/deletepost/:postid', (req, res) => { //delete review
+    console.log(req.path);
     Post.findOne({_id:req.params.postid})
     .populate("postedBy","_id")
     .exec((err,post) => {
@@ -109,43 +95,6 @@ router.delete('/deletepost/:postid',identifyUserLogin, (req, res) => {
             })
         }
     })
-})
-
-router.get('/posts/:postId', identifyUserLogin, (req, res) => {
-    Post.findById(req.params.postId)
-        .then(post => {
-            if(post) {
-                res.status(200).json(post);
-            }
-        })
-        .catch((e => res.status(500).json(e)));
-})
-
-router.put('/posts/:postId', identifyUserLogin, async (req, res) => {
-    try{
-        console.log(req.body);
-        const post = await Post.findById(req.params.postId);
-        const { title, body, pic} = req.body
-        if(!post){
-            return res.status(400).json({error: 'Post not Found!'});
-        }
-        //make no have password respone
-        post.title = title;
-        post.body = body;
-        if(pic) {
-            post.picture = pic;
-        }
-        console.log(post);
-        await post.save(); 
-        
-        return res.status(200).json(post);
-    } catch(e) {
-        console.log(e)
-        res.status(500).json({
-            error: 'Server error'
-        })
-    }
-    
 })
 
 module.exports = router;
