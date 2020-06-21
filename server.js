@@ -47,7 +47,8 @@ const swaggerOptions = {
       description: "Switzerland Review",
       version :"1.0.0",
       contact: {
-
+          name: "Hoàng Minh Phát - 17520876",
+          name: "Cao Thanh Ngân - 17521308"
       },
       servers: ["localhos:8888"]
     }
