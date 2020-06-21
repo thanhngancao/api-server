@@ -83,12 +83,12 @@ app.use('/apidocs', swaggerUI.serve, swaggerUI.setup(swaggerDocs));
  *    parameters:
  *    - name: email
  *      description: user email
- *      in: formData
+ *      in: body
  *      required: true
  *      type: string
  *    - name: password
  *      description: user password
- *      in: formData
+ *      in: body
  *      required: true
  *      type: string
  *    responses: 
