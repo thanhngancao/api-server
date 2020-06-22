@@ -99,6 +99,17 @@ router.delete('/deletepost/:postid', identifyUserLogin, (req, res) => { //delete
     })
 })
 
+router.get('/posts/:postId', identifyUserLogin, (req, res) => {
+    Post.findById(req.params.postId)
+        .then(post => {
+            if(post) {
+                res.status(200).json(post);
+            }
+        })
+        .catch((e => res.status(500).json(e)));
+})
+
+
 router.put('/posts/:postId', identifyUserLogin, async (req, res) => {
     try{
         console.log(req.body);
