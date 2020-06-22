@@ -88,7 +88,7 @@ router.delete('/deletepost/:postid', (req, res) => { //delete review
         }
         // console.log(req.user, 'user')
         // console.log(post.postedBy._id, 'post')
-        if(post.postedBy.toString() === req.body.user.toString()){
+        if(post.postedBy._id.toString() === req.body.user.toString()){
             post.remove()
             .then(result => {
                 res.json(result)
