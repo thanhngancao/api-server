@@ -10,7 +10,7 @@ const Post = mongoose.model("Post")
 //access Private
 router.post('/createnewsfeed',(req, res, next) => { //Create new review
     const { title, body, pic} = req.body
-    
+    console.log(req.body);
     if(!title || !body || !pic ){
         return res.status(400).json({error: 'Please add into fields'});
     }
@@ -21,6 +21,7 @@ router.post('/createnewsfeed',(req, res, next) => { //Create new review
         picture:pic,
         postedBy:req.user
     })
+    console.log(post)
     post.save()
         .then(result => {
             res.json({post:result})
