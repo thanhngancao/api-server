@@ -99,4 +99,31 @@ router.delete('/deletepost/:postid', identifyUserLogin, (req, res) => { //delete
     })
 })
 
+router.put('/posts/:postId', identifyUserLogin, async (req, res) => {
+    try{
+        console.log(req.body);
+        const post = await Post.findById(req.params.postId);
+        const { title, body, pic} = req.body
+        if(!post){
+            return res.status(400).json({error: 'Post not Found!'});
+        }
+        //make no have password respone
+        post.title = title;
+        post.body = body;
+        if(pic) {
+            post.picture = pic;
+        }
+        console.log(post);
+        await post.save(); 
+        
+        return res.status(200).json(post);
+    } catch(e) {
+        console.log(e)
+        res.status(500).json({
+            error: 'Server error'
+        })
+    }
+    
+})
+
 module.exports = router;
