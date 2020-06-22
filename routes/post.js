@@ -46,7 +46,7 @@ router.get('/newsfeed', (req, res, next) => {
 })
 
 router.get('/mynewsfeed',identifyUserLogin, (req, res, next) => {
-    Post.find({postedBy:req.user._id})
+    Post.find({postedBy:req.user})
     .populate("postedBy", "_id name")
     .then(mynewsfeed => {
         res.json({mynewsfeed})
@@ -88,7 +88,7 @@ router.delete('/deletepost/:postid', (req, res) => { //delete review
         }
         // console.log(req.user, 'user')
         // console.log(post.postedBy._id, 'post')
-        if(post.postedBy.toString() === req.user._id.toString()){
+        if(post.postedBy.toString() === req.user.toString()){
             post.remove()
             .then(result => {
                 res.json(result)
