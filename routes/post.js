@@ -77,7 +77,7 @@ router.put('/comment', identifyUserLogin, (req,res, next)=> { // comment
     })
 })
 
-router.delete('/deletepost/:postid', (req, res) => { //delete review
+router.delete('/deletepost/:postid', identifyUserLogin, (req, res) => { //delete review
     console.log(req.path);
     Post.findOne({_id:req.params.postid})
     .populate("postedBy","_id")
