@@ -14,14 +14,15 @@ router.post('/createnewsfeed',(req, res, next) => { //Create new review
     if(!title || !body || !pic ){
         return res.status(400).json({error: 'Please add into fields'});
     }
-    //make no have password respone
+    //make no have password respone'
+    console.log(req.user,'asdas')
     const post = new Post({
         title,
         body,
         picture:pic,
-        postedBy:req.user
+        postedBy:req.body.user
     })
-    console.log(post)
+    console.log(post,'asdasd')
     post.save()
         .then(result => {
             res.json({post:result})
