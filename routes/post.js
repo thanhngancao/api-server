@@ -59,7 +59,7 @@ router.get('/mynewsfeed',identifyUserLogin, (req, res, next) => {
 router.put('/comment', identifyUserLogin, (req,res, next)=> { // comment 
     const comment = {
         text: req.body.text,
-        postedBy: req.user._id
+        postedBy: req.user
     }
     Post.findByIdAndUpdate(req.body.postId, {
         $push:{comments:comment}
